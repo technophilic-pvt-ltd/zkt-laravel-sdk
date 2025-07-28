@@ -1,0 +1,34 @@
+{
+    "name": "technophilic/zkteco-laravel-sdk",
+    "description": "An enhanced Laravel package for ZKTeco device integration with additional features",
+    "type": "laravel-package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Your Name",
+            "email": "your.email@example.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^12.0",
+        "rats/zkteco": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Technophilic\\ZKTecoLaravelSdk\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Technophilic\\ZKTecoLaravelSdk\\ZKTecoLaravelSdkServiceProvider"
+            ],
+            "aliases": {
+                "ZKTecoLaravelSdk": "Technophilic\\ZKTecoLaravelSdk\\ZKTecoLaravelSdkFacade"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
