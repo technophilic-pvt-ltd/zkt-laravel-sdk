@@ -71,13 +71,6 @@ class ZKTecoLaravelSdkService
         return count($zkUsers) . ' users synced to database.';
     }
 
-    // Add more custom methods here
-    public function customMethodExample($param)
-    {
-        // Implement your custom functionality
-        return "Custom method executed with param: $param";
-    }
-
     public function test()
     {
         return "test";
