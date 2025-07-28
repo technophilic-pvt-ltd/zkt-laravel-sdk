@@ -15,7 +15,7 @@
     ],
     "require": {
         "php": "^8.2",
-        "illuminate/support": "^12.0",
+        "illuminate/support": "^11.0",
         "rats/zkteco": "^1.0"
     },
     "autoload": {
