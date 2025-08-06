@@ -74,13 +74,15 @@ class Util
   const ATT_TYPE_OVERTIME_IN = 4;
   const ATT_TYPE_OVERTIME_OUT = 5;
 
-  /**
-   * Encode a timestamp send at the timeclock
-   * copied from zkemsdk.c - EncodeTime
-   *
-   * @param string $t Format: "Y-m-d H:i:s"
-   * @return int
-   */
+  const CMD_DOOR_UNLOCK = 31; # Unlocks the door
+
+    /**
+     * Encode a timestamp send at the timeclock
+     * copied from zkemsdk.c - EncodeTime
+     *
+     * @param string $t Format: "Y-m-d H:i:s"
+     * @return int
+     */
   static public function encodeTime($t)
   {
     $timestamp = strtotime($t);
