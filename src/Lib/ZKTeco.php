@@ -17,6 +17,7 @@ use Technophilic\Zkteco\Lib\Helper\Time;
 use Technophilic\Zkteco\Lib\Helper\User;
 use Technophilic\Zkteco\Lib\Helper\Util;
 use Technophilic\Zkteco\Lib\Helper\Connect;
+use Technophilic\Zkteco\Lib\Helper\Door;
 use Technophilic\Zkteco\Lib\Helper\Version;
 use Technophilic\Zkteco\Lib\Helper\WorkCode;
 
@@ -435,9 +436,13 @@ class ZKTeco
         return Device::clearLCD($this);
     }
 
-
     public function writeLCD()
     {
-        return Device::writeLCD($this, 2, "RAIHAN Afroz Topu");
+        return Device::writeLCD($this, 2, "Message for the Team");
+    }
+
+    public function unlockDoor()
+    {
+        return Door::unlock($this);
     }
 }
