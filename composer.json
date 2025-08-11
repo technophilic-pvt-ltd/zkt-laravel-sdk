@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Technophilic\\ZktLaravelSdk\\": "src/"
+            "Technophilic\\Zkteco\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Technophilic\\ZktLaravelSdk\\Tests\\": "tests/"
+            "Technophilic\\Zkteco\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -40,10 +40,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Technophilic\\ZktLaravelSdk\\Providers\\ZktecoServiceProvider"
+                "Technophilic\\Zkteco\\Providers\\ZktecoServiceProvider"
             ],
             "aliases": {
-                "ZktSdk": "Technophilic\\ZktLaravelSdk\\Facades\\ZktLaravelSdk"
+                "Zkteco": "Technophilic\\Zkteco\\Facades\\Zkteco"
             }
         }
     },
