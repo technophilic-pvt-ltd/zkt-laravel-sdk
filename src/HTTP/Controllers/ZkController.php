@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Technophilic\ZktLaravelSdk\Http\Controllers;
+use Illuminate\Routing\Controller;
+
 
 class ZkController extends Controller
 {
