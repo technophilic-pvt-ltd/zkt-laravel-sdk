@@ -21,10 +21,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Technophilic\\Zkteco\\ZKTecoLaravelSdkServiceProvider"
+                "Technophilic\\zkt-laravel-sdk\\ZKTecoLaravelSdkServiceProvider"
             ],
             "aliases": {
-                "ZKTecoLaravelSdk": "Technophilic\\Zkteco\\ZKTecoLaravelSdkFacade"
+                "ZKTecoLaravelSdk": "Technophilic\\zkt-laravel-sdk\\ZKTecoLaravelSdkFacade"
             }
         }
     },
