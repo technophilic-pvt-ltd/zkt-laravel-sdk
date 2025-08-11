@@ -40,7 +40,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Technophilic\\Zkteco\\ZktecoServiceProvider"
+                "Technophilic\\Zkteco\\Providers\\ZktecoServiceProvider"
             ],
             "aliases": {
                 "Zkteco": "Technophilic\\Zkteco\\Facades\\Zkteco"
