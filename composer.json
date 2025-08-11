@@ -1,32 +1,58 @@
 {
-    "name": "technophilic/zkteco-laravel-sdk",
-    "description": "ZKTeco Laravel Library",
-    "type": "laravel-package",
+    "name": "technophilic/zkt-laravel-sdk",
+    "description": "ZKTeco Laravel SDK - A comprehensive Laravel package for ZKTeco device integration",
+    "type": "library",
     "license": "MIT",
+    "keywords": ["laravel", "zkteco", "biometric", "attendance", "sdk"],
+    "homepage": "https://github.com/technophilic/zkt-laravel-sdk",
     "authors": [
         {
             "name": "Ravi Arya",
-            "email": "ravi.arya009@gmail.com"
+            "email": "ravi.arya009@gmail.com",
+            "role": "Developer"
         }
     ],
     "require": {
         "php": "^8.2",
-        "illuminate/support": "^12.0"
+        "illuminate/support": "^10.0|^11.0|^12.0",
+        "illuminate/config": "^10.0|^11.0|^12.0",
+        "illuminate/console": "^10.0|^11.0|^12.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0|^11.0",
+        "orchestra/testbench": "^8.0|^9.0|^10.0",
+        "mockery/mockery": "^1.6"
     },
     "autoload": {
         "psr-4": {
-            "Technophilic\\Zkteco\\": "src/"
+            "Technophilic\\ZktLaravelSdk\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Technophilic\\ZktLaravelSdk\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Technophilic\\zkt-laravel-sdk\\ZKTecoLaravelSdkServiceProvider"
+                "Technophilic\\ZktLaravelSdk\\ZktLaravelSdkServiceProvider"
             ],
             "aliases": {
-                "ZKTecoLaravelSdk": "Technophilic\\zkt-laravel-sdk\\ZKTecoLaravelSdkFacade"
+                "ZktSdk": "Technophilic\\ZktLaravelSdk\\Facades\\ZktLaravelSdk"
             }
         }
     },
-    "minimum-stability": "stable"
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }
