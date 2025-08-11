@@ -1,7 +1,7 @@
 {
     "name": "technophilic/zkteco-laravel-sdk",
     "description": "ZKTeco Laravel Library",
-    "type": "library",
+    "type": "laravel-package",
     "license": "MIT",
     "authors": [
         {
@@ -9,11 +9,24 @@
             "email": "ravi.arya009@gmail.com"
         }
     ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^12.0"
+    },
     "autoload": {
         "psr-4": {
-            "Technophilic\\Zkteco\\": "src"
+            "Technophilic\\Zkteco\\": "src/"
         }
     },
-    "minimum-stability": "stable",
-    "require": {}
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Technophilic\\Zkteco\\ZKTecoLaravelSdkServiceProvider"
+            ],
+            "aliases": {
+                "ZKTecoLaravelSdk": "Technophilic\\Zkteco\\ZKTecoLaravelSdkFacade"
+            }
+        }
+    },
+    "minimum-stability": "stable"
 }
