@@ -445,4 +445,56 @@ class ZKTeco
     {
         return Door::unlock($this);
     }
+
+    public function handleHandshake($sn, $option = null)
+    {
+        $response = "GET OPTION FROM: {$sn}\r\n" .
+            "Stamp=9999\r\n" .
+            "OpStamp=" . time() . "\r\n" .
+            "ErrorDelay=60\r\n" .
+            "Delay=30\r\n" .
+            "ResLogDay=18250\r\n" .
+            "ResLogDelCount=10000\r\n" .
+            "ResLogCount=50000\r\n" .
+            "TransTimes=00:00;14:05\r\n" .
+            "TransInterval=1\r\n" .
+            "TransFlag=1111000000\r\n" .
+            "Realtime=1\r\n" .
+            "Encrypt=0";
+        return $response;
+    }
+
+    public function handleGetRequest()
+    {
+        return "OK";
+    }
+
+    public function handlePushData($requestContent, $sn, $table, $stamp)
+    {
+        $records = [];
+        $arr = preg_split('/\\r\\n|\\r|,|\\n/', $requestContent);
+        if ($table === 'OPERLOG') {
+            return ['status' => 'OK', 'count' => count(array_filter($arr))];
+        }
+        foreach ($arr as $rey) {
+            if (empty($rey)) {
+                continue;
+            }
+            $data = explode("\t", $rey);
+            $records[] = [
+                'sn' => $sn,
+                'table' => $table,
+                'stamp' => $stamp,
+                'employee_id' => $data[0] ?? null,
+                'timestamp' => $data[1] ?? null,
+                'status1' => isset($data[2]) && $data[2] !== '' ? (int)$data[2] : null,
+                'status2' => isset($data[3]) && $data[3] !== '' ? (int)$data[3] : null,
+                'status3' => isset($data[4]) && $data[4] !== '' ? (int)$data[4] : null,
+                'status4' => isset($data[5]) && $data[5] !== '' ? (int)$data[5] : null,
+                'status5' => isset($data[6]) && $data[6] !== '' ? (int)$data[6] : null,
+                'unique_key' => hash('sha256', ($data[0] ?? '') . ($data[1] ?? '') . ($sn ?? '')),
+            ];
+        }
+        return ['status' => 'OK', 'count' => count($records), 'records' => $records];
+    }
 }
