@@ -1,52 +1,38 @@
 {
-    "name": "technophilic/zkt-laravel-sdk",
-    "description": "ZKTeco Laravel SDK - A comprehensive Laravel package for ZKTeco device integration",
-    "type": "library",
+    "name": "technophilic/zkteco-laravel-sdk",
+    "description": "An enhanced Laravel package for ZKTeco device integration with additional features",
+    "type": "laravel-package",
     "license": "MIT",
-    "keywords": ["laravel", "zkteco", "biometric", "attendance", "sdk"],
-    "homepage": "https://github.com/technophilic/zkt-laravel-sdk",
     "authors": [
         {
+            "name": "Technophilic",
+            "email": "contact@technophilic.co"
+        },
+        {
             "name": "Ravi Arya",
-            "email": "ravi.arya009@gmail.com",
-            "role": "Developer"
+            "email": "ravi.arya009@gmail.com"
         }
     ],
     "require": {
         "php": "^8.2",
-        "illuminate/support": "^11.0",
+        "illuminate/support": "^12.0",
         "rats/zkteco": "^1.0"
     },
     "autoload": {
         "psr-4": {
-            "Technophilic\\ZktLaravelSdk\\": "src/"
+            "Technophilic\\ZKTecoLaravelSdk\\": "src/"
         }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Technophilic\\ZktLaravelSdk\\Tests\\": "tests/"
-        }
-    },
-    "scripts": {
-        "test": "vendor/bin/phpunit",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Technophilic\\ZktLaravelSdk\\Providers\\ZktecoServiceProvider"
+                "Technophilic\\ZKTecoLaravelSdk\\ZKTecoLaravelSdkServiceProvider"
             ],
             "aliases": {
-                "ZktSdk": "Technophilic\\ZktLaravelSdk\\Facades\\ZktLaravelSdk"
+                "ZKTecoLaravelSdk": "Technophilic\\ZKTecoLaravelSdk\\ZKTecoLaravelSdkFacade"
             }
         }
     },
-    "config": {
-        "sort-packages": true,
-        "allow-plugins": {
-            "composer/package-versions-deprecated": true
-        }
-    },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true
 }
