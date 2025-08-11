@@ -1,10 +1,10 @@
 {
-    "name": "technophilic/zkt-laravel-sdk",
+    "name": "technophilic/zkteco-laravel-sdk",
     "description": "ZKTeco Laravel SDK - A comprehensive Laravel package for ZKTeco device integration",
     "type": "library",
     "license": "MIT",
     "keywords": ["laravel", "zkteco", "biometric", "attendance", "sdk"],
-    "homepage": "https://github.com/technophilic/zkt-laravel-sdk",
+    "homepage": "https://github.com/technophilic/zkteco-laravel-sdk",
     "authors": [
         {
             "name": "Ravi Arya",
@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Technophilic\\ZktLaravelSdk\\": "src/"
+            "Technophilic\\Zkteco\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Technophilic\\ZktLaravelSdk\\Tests\\": "tests/"
+            "Technophilic\\Zkteco\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -40,10 +40,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Technophilic\\ZktLaravelSdk\\ZktLaravelSdkServiceProvider"
+                "Technophilic\\Zkteco\\ZktecoServiceProvider"
             ],
             "aliases": {
-                "ZktSdk": "Technophilic\\ZktLaravelSdk\\Facades\\ZktLaravelSdk"
+                "Zkteco": "Technophilic\\Zkteco\\Facades\\Zkteco"
             }
         }
     },
