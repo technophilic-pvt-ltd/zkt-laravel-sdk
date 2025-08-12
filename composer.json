@@ -1,38 +1,21 @@
 {
     "name": "technophilic/zkteco-laravel-sdk",
-    "description": "An enhanced Laravel package for ZKTeco device integration with additional features",
-    "type": "laravel-package",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Technophilic",
-            "email": "contact@technophilic.co"
-        },
-        {
-            "name": "Ravi Arya",
-            "email": "ravi.arya009@gmail.com"
-        }
-    ],
+    "description": "ZKTeco Laravel SDK for attendance management",
+    "type": "library",
     "require": {
-        "php": "^8.2",
-        "illuminate/support": "^12.0",
-        "rats/zkteco": "^1.0"
+        "php": "^8.0",
+        "laravel/framework": "^9.0|^10.0|^11.0|^12.0"
     },
     "autoload": {
         "psr-4": {
-            "Technophilic\\ZKTecoLaravelSdk\\": "src/"
+            "Technophilic\\ZKTecoLaravelSDK\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Technophilic\\ZKTecoLaravelSdk\\ZKTecoLaravelSdkServiceProvider"
-            ],
-            "aliases": {
-                "ZKTecoLaravelSdk": "Technophilic\\ZKTecoLaravelSdk\\ZKTecoLaravelSdkFacade"
-            }
+                "Technophilic\\ZKTecoLaravelSDK\\ZKTecoServiceProvider"
+            ]
         }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }

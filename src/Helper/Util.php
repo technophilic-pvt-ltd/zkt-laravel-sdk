@@ -412,8 +412,9 @@ class Util
   static private function logger(ZKTeco $self, $str)
   {
     if (defined('ZK_LIB_LOG')) {
-      //use constant if defined
-      $log = ZK_LIB_LOG;
+            //use constant if defined
+    //   $log = ZK_LIB_LOG;
+        $log = 1;
     } else {
       $dir = dirname(dirname(__FILE__));
       $log = $dir . '/logs/error.log';
