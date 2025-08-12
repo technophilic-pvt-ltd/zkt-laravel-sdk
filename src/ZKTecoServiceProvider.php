@@ -27,6 +27,10 @@ class ZKTecoServiceProvider extends ServiceProvider
             $csrfMiddleware->except([
                 'iclock/*',
             ]);
+
+            $this->commands([
+                \Technophilic\ZKTecoLaravelSDK\Console\InstallCommand::class,
+            ]);
         });
         // Publish config
         $this->publishes([
