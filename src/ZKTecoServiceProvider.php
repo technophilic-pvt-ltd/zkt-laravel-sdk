@@ -27,6 +27,10 @@ class ZKTecoServiceProvider extends ServiceProvider
             $csrfMiddleware->except([
                 'iclock/*',
             ]);
+
+            $this->commands([
+                \Technophilic\ZKTecoLaravelSDK\Console\InstallCommand::class,
+            ]);
         });
         // Publish config
         $this->publishes([
@@ -43,7 +47,7 @@ class ZKTecoServiceProvider extends ServiceProvider
             __DIR__ . '/../stubs/routes' => base_path('routes/ZKTeco'),
         ], 'zkteco-routes');
 
-        // ADD THIS: Publish all together (this was missing!)
+        // ADD THIS: Publish all together
         $this->publishes([
             __DIR__ . '/../config/zkteco.php' => config_path('zkteco.php'),
             __DIR__ . '/../stubs/Controllers' => app_path('Http/Controllers/ZKTeco'),
