@@ -4,6 +4,8 @@ namespace Technophilic\ZKTecoLaravelSDK;
 
 use ErrorException;
 use Exception;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Request;
 use Technophilic\ZKTecoLaravelSDK\Helper\Attendance;
 use Technophilic\ZKTecoLaravelSDK\Helper\Device;
 use Technophilic\ZKTecoLaravelSDK\Helper\Face;
@@ -20,8 +22,7 @@ use Technophilic\ZKTecoLaravelSDK\Helper\Connect;
 use Technophilic\ZKTecoLaravelSDK\Helper\Door;
 use Technophilic\ZKTecoLaravelSDK\Helper\Version;
 use Technophilic\ZKTecoLaravelSDK\Helper\WorkCode;
-
-
+use Throwable;
 
 class ZKTeco
 {
@@ -447,9 +448,12 @@ class ZKTeco
         return Door::unlock($this);
     }
 
-    public function handleHandshake($sn, $option = null)
+    public function handleHandshake()
     {
-        $response = "GET OPTION FROM: {$sn}\r\n" .
+        $request = Request::capture();
+        $deviceSn = $request->input('SN');
+
+        $handshakeResponse = "GET OPTION FROM: {$deviceSn}\r\n" .
             "Stamp=9999\r\n" .
             "OpStamp=" . time() . "\r\n" .
             "ErrorDelay=60\r\n" .
@@ -462,41 +466,64 @@ class ZKTeco
             "TransFlag=1111000000\r\n" .
             "Realtime=1\r\n" .
             "Encrypt=0";
-        return $response;
+
+        Log::info('Handshake response for device', ['device_sn' => $deviceSn]);
+
+        return $handshakeResponse;
     }
 
     public function handleGetRequest()
     {
+        Log::info('get request function ran');
         return "OK";
     }
 
-    public function handlePushData($requestContent, $sn, $table, $stamp)
+    public function handleRecievedRecords()
     {
-        $records = [];
-        $arr = preg_split('/\\r\\n|\\r|,|\\n/', $requestContent);
-        if ($table === 'OPERLOG') {
-            return ['status' => 'OK', 'count' => count(array_filter($arr))];
-        }
-        foreach ($arr as $rey) {
-            if (empty($rey)) {
-                continue;
+        try {
+            $request = Request::capture();
+            $recordsContent = preg_split('/\\r\\n|\\r|,|\\n/', $request->getContent());
+            $attendanceData = [];
+
+            // Handle operation logs.
+            if ($request->input('table') == "OPERLOG") {
+                foreach ($recordsContent as $record) {
+                    if (isset($record)) {
+                        //do somthing
+                        continue;
+                    }
+                }
+                return "OK: ";
             }
-            $data = explode("\t", $rey);
-            $records[] = [
-                'sn' => $sn,
-                'table' => $table,
-                'stamp' => $stamp,
-                'employee_id' => $data[0] ?? null,
-                'timestamp' => $data[1] ?? null,
-                'status1' => isset($data[2]) && $data[2] !== '' ? (int)$data[2] : null,
-                'status2' => isset($data[3]) && $data[3] !== '' ? (int)$data[3] : null,
-                'status3' => isset($data[4]) && $data[4] !== '' ? (int)$data[4] : null,
-                'status4' => isset($data[5]) && $data[5] !== '' ? (int)$data[5] : null,
-                'status5' => isset($data[6]) && $data[6] !== '' ? (int)$data[6] : null,
-                'unique_key' => hash('sha256', ($data[0] ?? '') . ($data[1] ?? '') . ($sn ?? '')),
-            ];
+
+            // Process attendance logs.
+            foreach ($recordsContent as $record) {
+                if (empty($record)) {
+                    continue;
+                }
+                Log::info('record', ['record' => $record]);
+                $recordFields = explode("\t", $record);
+                Log::info('record fields', ['record_fields' => $recordFields]);
+
+                $attendanceData = [
+                    'sn' => $request->input('SN'),
+                    'table' => $request->input('table'),
+                    'stamp' => $request->input('Stamp'),
+                    'employee_id' => $recordFields[0] ?? null,
+                    'time_stamp' => $recordFields[1] ?? null,
+                    'status1' => $recordFields[2] ?? null,
+                    'status2' => $recordFields[3] ?? null,
+                    'status3' => $recordFields[4] ?? null,
+                    'status4' => $recordFields[5] ?? null,
+                    'status5' => $recordFields[6] ?? null,
+                ];
+            }
+            Log::info('Final attendance data output', $attendanceData);
+            return "OK: " . json_encode($attendanceData);
+        } catch (Throwable $e) {
+            report($e);
+            return "ERROR: " . $e . "\n";
         }
-        return ['status' => 'OK', 'count' => count($records), 'records' => $records];
     }
 
     public function index()
