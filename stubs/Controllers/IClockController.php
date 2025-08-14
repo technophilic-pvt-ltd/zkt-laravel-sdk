@@ -24,18 +24,21 @@ class IClockController extends Controller
 
     public function handshake()
     {
+        //device expects a return response.
         $handshakeResponse =  $this->zkTeco->handleHandshake();
         return $handshakeResponse;
     }
 
     public function receiveRecords()
     {
+        //device expects a return 'ok'
         $recievedRecords = $this->zkTeco->handleRecievedRecords();
         return $recievedRecords;
     }
 
     public function getrequest()
     {
+        //device expects a return 'ok'
         return $this->zkTeco->handleGetRequest();
     }
 }
