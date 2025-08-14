@@ -1,7 +1,8 @@
 {
     "name": "technophilic/zkteco-laravel-sdk",
-    "description": "ZKTeco Laravel SDK for attendance management",
+    "description": "The technophilic/zkteco-laravel-sdk package provides easy to use functions to ZKTeco Device activities.",
     "type": "library",
+    "license": "MIT",
     "require": {
         "php": "^8.0",
         "laravel/framework": "^9.0|^10.0|^11.0|^12.0"
