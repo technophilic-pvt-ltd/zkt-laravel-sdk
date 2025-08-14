@@ -28,9 +28,9 @@ You have to enable your php socket if it is not enable.
     Setup these two parameters in you .env file
 
 ```php
-    ZKTECO_DEVICE_IP = Your Device IP
+    ZKTECO_IP = Your Device IP
 
-    ZKTECO_DEVICE_PORT = Device Port (default: 4370)
+    ZKTECO_PORT = Device Port (default: 4370)
 ```
 2. Create a object of ZKTeco class.
 
