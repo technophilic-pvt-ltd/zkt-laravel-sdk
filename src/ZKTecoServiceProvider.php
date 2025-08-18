@@ -21,31 +21,31 @@ class ZKTecoServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->booted(function () {
-            $csrfMiddleware = app(VerifyCsrfToken::class);
+            // $csrfMiddleware = app(VerifyCsrfToken::class);
 
-            // Merge your routes with the existing except array
-            $csrfMiddleware->except([
-                'iclock/*',
-            ]);
+            // // Merge your routes with the existing except array
+            // $csrfMiddleware->except([
+            //     'iclock/*',
+            // ]);
 
             $this->commands([
                 \Technophilic\ZKTecoLaravelSDK\Console\InstallCommand::class,
             ]);
         });
-        // Publish config
-        $this->publishes([
-            __DIR__ . '/../config/zkteco.php' => config_path('zkteco.php'),
-        ], 'zkteco-config');
+        // // Publish config
+        // $this->publishes([
+        //     __DIR__ . '/../config/zkteco.php' => config_path('zkteco.php'),
+        // ], 'zkteco-config');
 
-        // Publish controllers to user's app
-        $this->publishes([
-            __DIR__ . '/../stubs/Controllers' => app_path('Http/Controllers/ZKTeco'),
-        ], 'zkteco-controllers');
+        // // Publish controllers to user's app
+        // $this->publishes([
+        //     __DIR__ . '/../stubs/Controllers' => app_path('Http/Controllers/ZKTeco'),
+        // ], 'zkteco-controllers');
 
-        // Publish routes to user's app
-        $this->publishes([
-            __DIR__ . '/../stubs/routes' => base_path('routes/ZKTeco'),
-        ], 'zkteco-routes');
+        // // Publish routes to user's app
+        // $this->publishes([
+        //     __DIR__ . '/../stubs/routes' => base_path('routes/ZKTeco'),
+        // ], 'zkteco-routes');
 
         // ADD THIS: Publish all together
         $this->publishes([

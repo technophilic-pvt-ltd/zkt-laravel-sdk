@@ -24,15 +24,7 @@ class InstallCommand extends Command
         $this->line('- Controllers: app/Http/Controllers/ZKTeco/');
         $this->line('- Routes: routes/zkteco/');
         $this->line('- Config: config/zkteco.php');
-        $this->line('- Views: resources/views/zkteco/');
         $this->addRoutesToWebPhp();
-
-
-        $this->newLine();
-        $this->info('Next steps:');
-        $this->line('1. Add "require base_path(\'routes/zkteco.php\');" to routes/zkteco.php');
-        $this->line('2. Configure your device settings in config/zkteco.php');
-        $this->line('3. Run: php artisan migrate (if you have migrations)');
     }
 
     protected function addRoutesToWebPhp()
