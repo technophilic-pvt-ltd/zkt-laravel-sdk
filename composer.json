@@ -3,6 +3,16 @@
     "description": "The technophilic/zkteco-laravel-sdk package provides easy to use functions to ZKTeco Device activities.",
     "type": "library",
     "license": "MIT",
+      "authors": [
+        {
+            "name": "Ravi Arya",
+            "email": "ravi.arya009@gmail.com"
+        },
+        {
+            "name": "Technophilic",
+            "email": "contact@technophilic.co"
+        }
+    ],
     "require": {
         "php": "^8.0",
         "laravel/framework": "^9.0|^10.0|^11.0|^12.0"

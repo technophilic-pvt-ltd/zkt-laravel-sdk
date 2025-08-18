@@ -33,6 +33,7 @@ class IClockController extends Controller
     {
         //device expects a return 'ok'
         $recievedRecords = $this->zkTeco->handleRecievedRecords();
+        Log::info('Final attendance data output', [$recievedRecords]);
         return $recievedRecords;
     }
 

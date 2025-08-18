@@ -41,7 +41,6 @@ class ZKTeco
      */
     public function __construct()
     {
-
         $this->_ip = env('ZKTECO_IP', '192.168.1.163');
         $this->_port = env('ZKTECO_PORT', 4370);
 
@@ -518,7 +517,6 @@ class ZKTeco
                     'status5' => $recordFields[6] ?? null,
                 ];
             }
-            Log::info('Final attendance data output', $attendanceData);
             return "OK: " . json_encode($attendanceData);
         } catch (Throwable $e) {
             report($e);
