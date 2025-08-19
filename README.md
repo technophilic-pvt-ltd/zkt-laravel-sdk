@@ -18,7 +18,7 @@ php artisan zkteco:install
 ```
 The package will automatically register itself.
 
-You have to enable your php socket if it is not enable. 
+You have to enable your php socket if it is not enabled. 
 
 
 ## Usage
